@@ -22,7 +22,20 @@ public class VueDesPieces extends Canvas implements Observer{
 			int y1= 250-((brk.hauteurBrique*40)/2);
 			int x2= brk.longueurBrique*30;
 			int y2= brk.hauteurBrique*40;
+			g.setColor(brk.color);
+			g.fillRect(x1, y1, x2, y2);
+			g.setColor(Color.black);
 			g.drawRect(x1, y1, x2, y2);
+			for(int i=0; i<brk.longueurBrique; i++) {
+				x1=250-((brk.longueurBrique*30)/2)+(i*30)+5;
+				y1=250-((brk.hauteurBrique*40)/2)-5;
+				x2=20;
+				y2=5;
+				g.setColor(brk.color);
+				g.fillRect(x1, y1, x2, y2);
+				g.setColor(Color.black);
+				g.drawRect(x1, y1, x2, y2);
+			}
 		}
 	}
 	@Override

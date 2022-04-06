@@ -7,7 +7,7 @@ public class ListBrique extends Panel {
 	public ListBrique(Modele m) {
 		maListe = new List(20);
 		
-		for (Brique b : m.bibliothèque) {
+		for (Brique b : m.bibliotheque) {
 			maListe.add(b.nomBrique);
 		}
 		
