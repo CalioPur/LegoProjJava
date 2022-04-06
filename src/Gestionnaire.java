@@ -5,11 +5,20 @@ import java.awt.event.WindowListener;
 
 public class Gestionnaire extends Frame implements WindowListener{
 	public Gestionnaire() {
-
+		
+		Modele modl = new Modele();
+		
+		Controlleur ctrl = new Controlleur(modl);
+		
 		this.setLayout(new BorderLayout());
+		
 		VueDesPieces pieces = new VueDesPieces();
 		pieces.setSize(500,500);
 		this.add(pieces, BorderLayout.NORTH);
+		
+		ListBrique mesBriques = new ListBrique(modl);
+		mesBriques.maListe.addItemListener(ctrl);
+		this.add(mesBriques, BorderLayout.EAST);
 
 		this.addWindowListener(this);
 		this.setTitle("Visualisation d'images");
