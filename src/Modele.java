@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+
 public class Modele extends Observable{
 
 	public List<Brique> bibliothèque;
@@ -14,6 +15,10 @@ public class Modele extends Observable{
 		this.bibliothèque.add(new Brique("2x2", 100, 2, 2, 1, null));
 		this.bibliothèque.add(new Brique("4x2", 101, 4, 2, 1, null));
 		this.bibliothèque.add(new Brique("6x2", 102, 6, 2, 1, null));
+	}
+	
+	public void deserialisation() {
+		
 	}
 
 	public void doSomething() {

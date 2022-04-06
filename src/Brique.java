@@ -9,20 +9,19 @@ public class Brique implements Serializable{
 	
 	String nomBrique;
 	int IdBrique;
-	HashMap<Integer,Color> couleurBrique;
+	Color color;
 	int longueurBrique;
 	int largeurBrique;
 	int hauteurBrique;
-	String coordonneesBrique;
 	HashSet<String> tagsBrique;
 	
-	public Brique(String n, int i, int lon, int larg, int haut, String coord) {
+	public Brique(String n, int id, int lon, int larg, int haut, Color c) {
 		this.nomBrique=n;
-		this.IdBrique=i;
+		this.IdBrique=id;
 		this.longueurBrique=lon;
 		this.largeurBrique=larg;
 		this.hauteurBrique=haut;
-		this.coordonneesBrique=coord;
+		this.color = c;
 	}
 //test eviter les accents svp ca bug sur ma version d'eclipse
 }
