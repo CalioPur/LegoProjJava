@@ -12,13 +12,13 @@ public class Gestionnaire extends Frame implements WindowListener{
 		
 		this.setLayout(new BorderLayout());
 		
-		VueDesPieces pieces = new VueDesPieces();
+		VueDesPieces pieces = new VueDesPieces(modl);
 		pieces.setSize(500,500);
-		this.add(pieces, BorderLayout.NORTH);
+		this.add(pieces, BorderLayout.EAST);
 		
 		ListBrique mesBriques = new ListBrique(modl);
 		mesBriques.maListe.addItemListener(ctrl);
-		this.add(mesBriques, BorderLayout.EAST);
+		this.add(mesBriques, BorderLayout.WEST);
 
 		this.addWindowListener(this);
 		this.setTitle("Visualisation d'images");
