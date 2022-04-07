@@ -9,6 +9,7 @@ public class Modele extends Observable{
 
 	public List<Brique> bibliotheque;
 	int indexBriqueSelect;
+	int angleVue = 0;
 	
 	public Modele() {
 		this.bibliotheque = new ArrayList<>();
@@ -25,14 +26,28 @@ public class Modele extends Observable{
 		
 	}
 
-	public void doSomething() {
-		// TODO plus tard quand on saura quoi faire
-		
-	}
 
 	public void nouvelleBriqueSelectionnee(Object item) {
 		indexBriqueSelect = (int)item;
 		this.setChanged();
 		this.notifyObservers(this.bibliotheque.get(this.indexBriqueSelect));
+	}
+
+	public void prochainAngleVue() {
+		angleVue++;
+		if (angleVue>5) {
+			angleVue = 0;
+		}
+		this.setChanged();
+		this.notifyObservers(angleVue);
+	}
+
+	public void precedentAngleVue() {
+		angleVue--;
+		if (angleVue<0) {
+			angleVue = 5;
+		}
+		this.setChanged();
+		this.notifyObservers(angleVue);
 	}
 }

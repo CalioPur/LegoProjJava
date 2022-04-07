@@ -6,20 +6,29 @@ import java.awt.event.ItemListener;
 public class Controlleur implements ActionListener, ItemListener {
 
 	Modele modl;
-	
-	public Controlleur(Modele m) {
+	Object prec;
+	Object next;
+
+	public Controlleur(Modele m, Object a, Object b) {
 		this.modl = m;
+		this.prec = a;
+		this.next = b;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		this.modl.doSomething();
+		if(e.getSource()==next) {
+			this.modl.prochainAngleVue();
+		}
+		if(e.getSource()==prec) {
+			this.modl.precedentAngleVue();
+		}
+		
 		
 	}
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		System.out.println(e.getItem());
 		this.modl.nouvelleBriqueSelectionnee(e.getItem());
 		
 	}
