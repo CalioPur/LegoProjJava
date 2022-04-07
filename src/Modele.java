@@ -35,7 +35,7 @@ public class Modele extends Observable{
 
 	public void prochainAngleVue() {
 		angleVue++;
-		if (angleVue>5) {
+		if (angleVue>6) {
 			angleVue = 0;
 		}
 		this.setChanged();
@@ -45,7 +45,7 @@ public class Modele extends Observable{
 	public void precedentAngleVue() {
 		angleVue--;
 		if (angleVue<0) {
-			angleVue = 5;
+			angleVue = 6;
 		}
 		this.setChanged();
 		this.notifyObservers(angleVue);
