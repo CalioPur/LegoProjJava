@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.io.File;
 
 public class listeBriqueConstruction {
@@ -40,9 +41,8 @@ public class listeBriqueConstruction {
 				mData[(mFirst + mSize) % mCapacity] = element;			
 				++mSize;
 			}
-			//System.out.printf("(enfiler) mFirst=%d, mSize=%d\n", mFirst, mSize);
 		}
-		public void défiler(){
+		public void defiler(){
 			if (this.estVide()) {
 				System.out.println("la liste est deja vide");
 			}
@@ -50,7 +50,19 @@ public class listeBriqueConstruction {
 				++mFirst;
 				--mSize;	
 			}
-			//System.out.printf("(défiler) mFirst=%d, mSize=%d\n", mFirst, mSize);
 		}
-	}
+		
+		public static void main(String[] args) {
+			listeBriqueConstruction l = new listeBriqueConstruction();
+			l.enfiler(new BriqueEtVolume(0,0,0,1,1,1,new Brique("2x2", 100, 2, 2, 1, Color.red)));
+			l.enfiler(new BriqueEtVolume(0,0,0,1,1,1,new Brique("3x2", 100, 3, 2, 1, Color.orange)));
+			System.out.println(l.premier().brique.nomBrique);
+			System.out.println(l.estVide());
+			l.defiler();
+			System.out.println(l.premier().brique.nomBrique);
+			l.defiler();
+			System.out.println(l.estVide());
+		}
+		
+}
 
