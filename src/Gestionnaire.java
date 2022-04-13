@@ -6,6 +6,8 @@ import java.awt.Panel;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.JTextField;
+
 public class Gestionnaire extends Frame implements WindowListener{
 	public Button prec=new Button("precedent view");
 	public Button next=new Button("next view");
@@ -22,9 +24,15 @@ public class Gestionnaire extends Frame implements WindowListener{
 		pieces.setSize(500,500);
 		this.add(pieces, BorderLayout.CENTER);
 		
+		Panel listAndSearchBar = new Panel(new BorderLayout());
+		JTextField textField = new JTextField(10);
 		ListBrique mesBriques = new ListBrique(modl);
+		//textField.addKeyListener(ctrl);
+		textField.getDocument().addDocumentListener(ctrl);
 		mesBriques.maListe.addItemListener(ctrl);
-		this.add(mesBriques, BorderLayout.WEST);
+		listAndSearchBar.add(textField, BorderLayout.NORTH);
+		listAndSearchBar.add(mesBriques, BorderLayout.CENTER);
+		this.add(listAndSearchBar, BorderLayout.WEST);
 		
 		Panel containerPanel = new Panel(new GridLayout(1, 2));
 		prec.addActionListener(ctrl);

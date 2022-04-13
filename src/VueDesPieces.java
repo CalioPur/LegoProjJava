@@ -180,7 +180,7 @@ public class VueDesPieces extends Canvas implements Observer {
 				poly2.addPoint(x1, y1+z1);
 				poly2.addPoint(x1+x3/2, y1+y3/2+z1);
 				poly2.addPoint(x1+x3/2, y1+y3/2);
-				g.setColor(brk.color);
+				g.setColor(brk.color.brighter());
 				g.fillPolygon(poly2);
 				g.setColor(Color.black);
 				g.drawPolygon(poly2);
@@ -190,7 +190,7 @@ public class VueDesPieces extends Canvas implements Observer {
 				poly3.addPoint(x1+x3/2, y1+y3/2+z1);
 				poly3.addPoint(x1+x2/2+x3/2, y1-y2/2+y3/2+z1);
 				poly3.addPoint(x1+x2/2+x3/2, y1-y2/2+y3/2);
-				g.setColor(brk.color);
+				g.setColor(brk.color.darker());
 				g.fillPolygon(poly3);
 				g.setColor(Color.black);
 				g.drawPolygon(poly3);
@@ -203,7 +203,12 @@ public class VueDesPieces extends Canvas implements Observer {
 		try {
 			brk = (Brique) arg0;
 		} catch (Exception e) {
-			angle = (int) arg0;
+			try{
+				angle = (int) arg0;
+			}
+			catch (Exception e2) {
+				
+			}
 		}
 		repaint();
 	}

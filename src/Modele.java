@@ -7,7 +7,8 @@ import java.util.Observable;
 
 public class Modele extends Observable{
 
-	public List<Brique> bibliotheque;
+	public ArrayList<Brique> bibliotheque;
+	public ArrayList<Brique> maListAffiche;
 	int indexBriqueSelect;
 	int angleVue = 0;
 	
@@ -20,17 +21,18 @@ public class Modele extends Observable{
 		this.bibliotheque.add(new Brique("2x2x3", 103, 2, 2, 3, Color.pink));
 		this.bibliotheque.add(new Brique("1x1", 104, 1, 1, 1, Color.orange));
 		this.bibliotheque.add(new Brique("3x1", 104, 3, 1, 1, Color.magenta));
+		this.maListAffiche=this.bibliotheque;
 	}
 	
 	public void deserialisation() {
-		
+		//pense a mettre maListAffiche = bibliotheque apres la deserialisation stp
 	}
 
 
 	public void nouvelleBriqueSelectionnee(Object item) {
 		indexBriqueSelect = (int)item;
 		this.setChanged();
-		this.notifyObservers(this.bibliotheque.get(this.indexBriqueSelect));
+		this.notifyObservers(this.maListAffiche.get(this.indexBriqueSelect));
 	}
 
 	public void prochainAngleVue() {
@@ -49,5 +51,18 @@ public class Modele extends Observable{
 		}
 		this.setChanged();
 		this.notifyObservers(angleVue);
+	}
+
+	public void actuList(String text) {
+		maListAffiche = new ArrayList<Brique>();
+		for(Brique piece : bibliotheque) {
+			if(piece.nomBrique.contains(text)) {
+				this.maListAffiche.add(piece);
+				System.out.println(piece.nomBrique);
+			}
+		}
+		System.out.println();
+		this.setChanged();
+		this.notifyObservers(maListAffiche);
 	}
 }
