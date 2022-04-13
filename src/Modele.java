@@ -20,6 +20,7 @@ public class Modele extends Observable{
 		this.bibliotheque.add(new Brique("2x2x3", 103, 2, 2, 3, Color.pink));
 		this.bibliotheque.add(new Brique("1x1", 104, 1, 1, 1, Color.orange));
 		this.bibliotheque.add(new Brique("3x1", 104, 3, 1, 1, Color.magenta));
+		this.bibliotheque.add(new Brique("4x4", 105, 4, 4, 1, Color.orange));
 	}
 	
 	public void deserialisation() {
