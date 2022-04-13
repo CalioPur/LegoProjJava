@@ -172,7 +172,6 @@ public class VueDesPieces extends Canvas implements Observer {
 						g.drawArc(x4, y4+5+(int) (20-20/Math.sqrt(3))/4, 20,(int) (20-20/Math.sqrt(3)), 0, -180);
 					}
 				}
-				
 				//face gauche
 				int z1=brk.hauteurBrique * 40;
 				Polygon poly2 = new Polygon();
