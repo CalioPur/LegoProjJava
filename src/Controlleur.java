@@ -1,3 +1,4 @@
+import java.awt.Button;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,22 +14,36 @@ import javax.swing.text.BadLocationException;
 public class Controlleur implements ActionListener, ItemListener, KeyListener, DocumentListener {
 
 	Modele modl;
-	Object prec;
-	Object next;
+	
 
-	public Controlleur(Modele m, Object a, Object b) {
+	public Controlleur(Modele m){
 		this.modl = m;
-		this.prec = a;
-		this.next = b;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==next) {
-			this.modl.prochainAngleVue();
+		Button btnSource = (Button) e.getSource();
+		String lbl = btnSource.getLabel();
+		if(lbl == "vue de face") {
+			this.modl.prochainAngleVue(0);
 		}
-		if(e.getSource()==prec) {
-			this.modl.precedentAngleVue();
+		if(lbl == "vue de coté droit") {
+			this.modl.prochainAngleVue(1);
+		}
+		if(lbl == "vue de derriere") {
+			this.modl.prochainAngleVue(2);
+		}
+		if(lbl == "vue de coté gauche") {
+			this.modl.prochainAngleVue(3);
+		}
+		if(lbl == "vue de dessus") {
+			this.modl.prochainAngleVue(4);
+		}
+		if(lbl == "vue de dessous") {
+			this.modl.prochainAngleVue(5);
+		}
+		if(lbl == "vue isometrique") {
+			this.modl.prochainAngleVue(6);
 		}
 		
 		

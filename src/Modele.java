@@ -22,6 +22,7 @@ public class Modele extends Observable{
 		this.bibliotheque.add(new Brique("1x1", 104, 1, 1, 1, Color.orange));
 		this.bibliotheque.add(new Brique("3x1", 104, 3, 1, 1, Color.magenta));
 		this.bibliotheque.add(new Brique("4x4", 105, 4, 4, 1, Color.orange));
+		this.bibliotheque.add(new Brique("4x4x4", 105, 4, 4, 4, Color.yellow));
 		this.maListAffiche=this.bibliotheque;
 
 	}
@@ -37,20 +38,8 @@ public class Modele extends Observable{
 		this.notifyObservers(this.maListAffiche.get(this.indexBriqueSelect));
 	}
 
-	public void prochainAngleVue() {
-		angleVue++;
-		if (angleVue>6) {
-			angleVue = 0;
-		}
-		this.setChanged();
-		this.notifyObservers(angleVue);
-	}
-
-	public void precedentAngleVue() {
-		angleVue--;
-		if (angleVue<0) {
-			angleVue = 6;
-		}
+	public void prochainAngleVue(int ang) {
+		angleVue=ang;
 		this.setChanged();
 		this.notifyObservers(angleVue);
 	}

@@ -146,7 +146,7 @@ public class VueDesPieces extends Canvas implements Observer {
 			if (angle == 6) {
 				//face du dessus
 				int x1 = (int) (250 - ((brk.largeurBrique * 30 *Math.sqrt(3)) / 2));
-				int y1 = 250 - ((brk.largeurBrique * 30) / 2);
+				int y1 = 250 - ((brk.largeurBrique * 30) / 2)-50;
 				int x2 = (int) (brk.longueurBrique * 30 *Math.sqrt(3));
 				int y2 = brk.longueurBrique * 30;
 				int x3 = (int) (brk.largeurBrique * 30 *Math.sqrt(3));
