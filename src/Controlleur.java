@@ -1,4 +1,5 @@
 import java.awt.Button;
+import java.awt.Checkbox;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,8 +52,14 @@ public class Controlleur implements ActionListener, ItemListener, KeyListener, D
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		// TODO Auto-generated method stub
-		this.modl.nouvelleBriqueSelectionnee(e.getItem());
+		try {
+			Checkbox cbs = (Checkbox) e.getSource();
+			this.modl.chmtTag(cbs.getLabel());
+		}
+		catch(Exception ex) {
+			this.modl.nouvelleBriqueSelectionnee(e.getItem());
+		}
+		
 		
 	}
 

@@ -6,7 +6,8 @@ import java.util.Observable;
 
 
 public class Modele extends Observable{
-
+	String elmtCompare = "name";
+	String textTyped = "";
 	public ArrayList<Brique> bibliotheque;
 	public ArrayList<Brique> maListAffiche;
 	int indexBriqueSelect;
@@ -43,13 +44,36 @@ public class Modele extends Observable{
 		this.setChanged();
 		this.notifyObservers(angleVue);
 	}
-
+	
+	public void chmtTag(String elmt){
+		elmtCompare = elmt;
+		actuList(textTyped);
+	}
+	
 	public void actuList(String text) {
+		textTyped = text;
 		maListAffiche = new ArrayList<Brique>();
 		for(Brique piece : bibliotheque) {
-			if(piece.nomBrique.contains(text)) {
-				this.maListAffiche.add(piece);
-				System.out.println(piece.nomBrique);
+			if(elmtCompare == "name") {
+				if(piece.nomBrique.contains(text)) {
+					this.maListAffiche.add(piece);
+				}
+			}
+			if(elmtCompare == "id") {
+				String strId = String.valueOf(piece.IdBrique);
+				if(strId.contains(text)) {
+					this.maListAffiche.add(piece);
+					System.out.println(piece.nomBrique);
+				}
+			}
+			if(elmtCompare == "color") {
+				String strCol = new String();
+				ColorUtils colScript = new ColorUtils();
+				strCol = colScript.getColorNameFromColor(piece.color);
+				if(strCol.contains(text)) {
+					this.maListAffiche.add(piece);
+					System.out.println(piece.nomBrique);
+				}
 			}
 		}
 		System.out.println();

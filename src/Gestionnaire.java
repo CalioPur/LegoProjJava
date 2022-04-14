@@ -1,5 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Checkbox;
+import java.awt.CheckboxGroup;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Panel;
@@ -29,6 +31,21 @@ public class Gestionnaire extends Frame implements WindowListener{
 		mesBriques.maListe.addItemListener(ctrl);
 		listAndSearchBar.add(textField, BorderLayout.NORTH);
 		listAndSearchBar.add(mesBriques, BorderLayout.CENTER);
+		
+		Panel tag = new Panel(new GridLayout(1, 3));
+		CheckboxGroup grp = new CheckboxGroup();
+		Checkbox name = new Checkbox("name", true, grp);
+		name.addItemListener(ctrl);
+		Checkbox id = new Checkbox("id",false, grp);
+		id.addItemListener(ctrl);
+		Checkbox color = new Checkbox("color",false, grp);
+		color.addItemListener(ctrl);
+		tag.add(name);
+		tag.add(color);
+		tag.add(id);
+		
+		listAndSearchBar.add(tag, BorderLayout.SOUTH );
+		
 		this.add(listAndSearchBar, BorderLayout.WEST);
 		
 		Panel containerPanel = new Panel(new GridLayout(2, 3));
