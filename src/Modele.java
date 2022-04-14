@@ -69,7 +69,7 @@ public class Modele extends Observable{
 			if(elmtCompare == "color") {
 				String strCol = new String();
 				ColorUtils colScript = new ColorUtils();
-				strCol = colScript.getColorNameFromColor(piece.color);
+				strCol = colScript.getColorNameFromColor(piece.color).toLowerCase();
 				if(strCol.contains(text)) {
 					this.maListAffiche.add(piece);
 					System.out.println(piece.nomBrique);
