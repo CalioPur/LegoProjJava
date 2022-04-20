@@ -54,8 +54,8 @@ public class listeBriqueConstruction {
 		
 		public static void main(String[] args) {
 			listeBriqueConstruction l = new listeBriqueConstruction();
-			l.enfiler(new BriqueEtVolume(0,0,0,1,1,1,new Brique("2x2", 100, 2, 2, 1, Color.red)));
-			l.enfiler(new BriqueEtVolume(0,0,0,1,1,1,new Brique("3x2", 100, 3, 2, 1, Color.orange)));
+			l.enfiler(new BriqueEtVolume(0,0,0,new Brique("2x2", 100, 2, 2, 1, Color.red)));
+			l.enfiler(new BriqueEtVolume(0,0,0,new Brique("3x2", 100, 3, 2, 1, Color.orange)));
 			System.out.println(l.premier().brique.nomBrique);
 			System.out.println(l.estVide());
 			l.defiler();

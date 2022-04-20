@@ -28,13 +28,13 @@ public class Controlleur implements ActionListener, ItemListener, KeyListener, D
 		if(lbl == "vue de face") {
 			this.modl.prochainAngleVue(0);
 		}
-		if(lbl == "vue de coté droit") {
+		if(lbl == "vue de cote droit") {
 			this.modl.prochainAngleVue(1);
 		}
 		if(lbl == "vue de derriere") {
 			this.modl.prochainAngleVue(2);
 		}
-		if(lbl == "vue de coté gauche") {
+		if(lbl == "vue de cote gauche") {
 			this.modl.prochainAngleVue(3);
 		}
 		if(lbl == "vue de dessus") {

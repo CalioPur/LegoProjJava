@@ -24,6 +24,10 @@ public class Gestionnaire extends Frame implements WindowListener{
 		pieces.setSize(500,500);
 		this.add(pieces, BorderLayout.CENTER);
 		
+		VueDesPieces2 pieces2 = new VueDesPieces2(modl);
+		pieces2.setSize(600,400);
+		this.add(pieces2, BorderLayout.EAST);
+		
 		Panel listAndSearchBar = new Panel(new BorderLayout());
 		JTextField textField = new JTextField(10);
 		ListBrique mesBriques = new ListBrique(modl);
@@ -53,9 +57,9 @@ public class Gestionnaire extends Frame implements WindowListener{
 		btn0.addActionListener(ctrl);
 		Button btn1 = new Button("vue de derriere");
 		btn1.addActionListener(ctrl);
-		Button btn2 = new Button("vue de coté droit");
+		Button btn2 = new Button("vue de cote droit");
 		btn2.addActionListener(ctrl);
-		Button btn3 = new Button("vue de coté gauche");
+		Button btn3 = new Button("vue de cote gauche");
 		btn3.addActionListener(ctrl);
 		Button btn4 = new Button("vue de dessus");
 		btn4.addActionListener(ctrl);
