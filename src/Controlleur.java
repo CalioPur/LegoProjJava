@@ -114,8 +114,7 @@ public class Controlleur implements ActionListener, MouseListener, ItemListener,
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		System.out.print(arg0.getX()+" ");
-		System.out.println(arg0.getY());
+
 		int mouseX = arg0.getX();
 		int mouseY = arg0.getY();
 		

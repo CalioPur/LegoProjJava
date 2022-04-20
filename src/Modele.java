@@ -92,11 +92,7 @@ public class Modele extends Observable{
 			posX = mouseX/30;
 			posY = mouseY/30;
 		}
-		
-		System.out.println(posX + " "+ posY);
-		ArrayList pos = new ArrayList<Integer>(); // a changer, utiliser une position (creer la class)
-		pos.add(posX);
-		pos.add(posY);
+		Position pos = new Position(posX, posY);
 		this.setChanged();
 		this.notifyObservers(pos);
 		

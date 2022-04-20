@@ -25,7 +25,6 @@ public class ListBrique extends Panel implements Observer{
 	}
 	@Override
 	public void update(Observable o, Object arg0) {
-		System.out.println(arg0);
 		try {
 			ArrayList<Brique> Lres = (ArrayList<Brique>) arg0;
 			resRecherche(Lres);
