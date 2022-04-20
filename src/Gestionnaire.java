@@ -25,7 +25,7 @@ public class Gestionnaire extends Frame implements WindowListener{
 		this.add(pieces, BorderLayout.CENTER);
 		
 		VueDesPieces2 pieces2 = new VueDesPieces2(modl);
-		pieces2.setSize(600,400);
+		pieces2.setSize(800,600);
 		this.add(pieces2, BorderLayout.EAST);
 		
 		Panel listAndSearchBar = new Panel(new BorderLayout());

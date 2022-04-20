@@ -15,22 +15,81 @@ public class VueDesPieces2 extends Canvas implements Observer {
 		super();
 		Canvas cnv = new Canvas();
 		cnv.setBackground(Color.blue);
-		cnv.setSize(600, 400);
+		cnv.setSize(800, 600);
 
 		cnv.setVisible(true);
 		m.addObserver(this);
 	}
 
-	public void paint(Graphics g) {
-		
-		if (brk != null) {
-			if (angle == 0) {
-				g.setColor(Color.blue);
-				for (int i=0;i<20;i++) {
-					for (int j=0;j<10;j++) {				
-						g.fillArc(i*30,j*40,5,5,0,360);
+	public void paint2(Graphics g){
+		int dim=15;
+				if (angle == 0) {
+					g.setColor(Color.LIGHT_GRAY);
+					for (int i=0;i<dim;i++) {
+						for (int j=0;j<dim;j++) {				
+							g.fillArc(i*30,j*40,5,5,0,360);
+						}
 					}
 				}
+				if (angle == 1) {
+					g.setColor(Color.LIGHT_GRAY);
+					for (int i=0;i<dim;i++) {
+						for (int j=0;j<dim;j++) {				
+							g.fillArc(i*30,j*40,5,5,0,360);
+						}
+					}
+				}
+				if (angle == 2) {
+					g.setColor(Color.LIGHT_GRAY);
+					for (int i=0;i<dim;i++) {
+						for (int j=0;j<dim;j++) {				
+							g.fillArc(i*30,j*40,5,5,0,360);
+						}
+					}
+				}
+				if (angle == 3) {
+					g.setColor(Color.LIGHT_GRAY);
+					for (int i=0;i<dim;i++) {
+						for (int j=0;j<dim;j++) {				
+							g.fillArc(i*30,j*40,5,5,0,360);
+						}
+					}
+				}
+				if (angle == 4) {
+					g.setColor(Color.LIGHT_GRAY);
+					for (int i=0;i<dim;i++) {
+						for (int j=0;j<dim;j++) {				
+							g.fillArc(i*30,j*30,5,5,0,360);
+						}
+					}
+				}
+				if (angle == 5) {
+					g.setColor(Color.LIGHT_GRAY);
+					for (int i=0;i<dim;i++) {
+						for (int j=0;j<dim;j++) {				
+							g.fillArc(i*30,j*30,5,5,0,360);
+						}
+					}
+				}
+				if (angle == 6) {
+					//face du dessus
+					g.setColor(Color.LIGHT_GRAY);
+					for (int z=0;z<dim;z++) {
+						for (int i=0;i<dim;i++) {
+							for (int j=0;j<dim;j++) {			
+								int coordx = (int)(i * 15*Math.sqrt(3)+10*Math.sqrt(3)+j * 15*Math.sqrt(3))-2;
+								int coordy = (j * 30/2) - 10-(i*30/2)+150+z*30;
+								g.fillArc(coordx,coordy,5,5,0,360);
+							}
+					}}
+					//face de gauche
+					
+					//face de droite
+		}}
+	public void paint(Graphics g) {
+		paint2(getGraphics());
+		if (brk != null) {
+			if (angle == 0) {
 				int x1 = 250 - ((brk.longueurBrique * 30) / 2);
 				int y1 = 250 - ((brk.hauteurBrique * 40) / 2);
 				int x2 = brk.longueurBrique * 30;
@@ -51,12 +110,6 @@ public class VueDesPieces2 extends Canvas implements Observer {
 				}
 			}
 			if (angle == 1) {
-				g.setColor(Color.blue);
-				for (int i=0;i<20;i++) {
-					for (int j=0;j<10;j++) {				
-						g.fillArc(i*30,j*40,5,5,0,360);
-					}
-				}
 				int x1 = 250 - ((brk.largeurBrique * 30) / 2);
 				int y1 = 250 - ((brk.hauteurBrique * 40) / 2);
 				int x2 = brk.largeurBrique * 30;
@@ -77,12 +130,7 @@ public class VueDesPieces2 extends Canvas implements Observer {
 				}
 			}
 			if (angle == 2) {
-				g.setColor(Color.blue);
-				for (int i=0;i<20;i++) {
-					for (int j=0;j<10;j++) {				
-						g.fillArc(i*30,j*40,5,5,0,360);
-					}
-				}
+				
 				int x1 = 250 - ((brk.longueurBrique * 30) / 2);
 				int y1 = 250 - ((brk.hauteurBrique * 40) / 2);
 				int x2 = brk.longueurBrique * 30;
@@ -103,12 +151,7 @@ public class VueDesPieces2 extends Canvas implements Observer {
 				}
 			}
 			if (angle == 3) {
-				g.setColor(Color.blue);
-				for (int i=0;i<20;i++) {
-					for (int j=0;j<10;j++) {				
-						g.fillArc(i*30,j*40,5,5,0,360);
-					}
-				}
+				
 				int x1 = 250 - ((brk.largeurBrique * 30) / 2);
 				int y1 = 250 - ((brk.hauteurBrique * 40) / 2);
 				int x2 = brk.largeurBrique * 30;
@@ -129,12 +172,7 @@ public class VueDesPieces2 extends Canvas implements Observer {
 				}
 			}
 			if (angle == 4) {
-				g.setColor(Color.blue);
-				for (int i=0;i<20;i++) {
-					for (int j=0;j<10;j++) {				
-						g.fillArc(i*30,j*30,5,5,0,360);
-					}
-				}
+				
 				int x1 = 250 - ((brk.largeurBrique * 30) / 2);
 				int y1 = 250 - ((brk.longueurBrique * 30) / 2);
 				int x2 = brk.largeurBrique * 30;
@@ -154,12 +192,7 @@ public class VueDesPieces2 extends Canvas implements Observer {
 				}
 			}
 			if (angle == 5) {
-				g.setColor(Color.blue);
-				for (int i=0;i<20;i++) {
-					for (int j=0;j<10;j++) {				
-						g.fillArc(i*30,j*30,5,5,0,360);
-					}
-				}
+				
 				int x1 = 250 - ((brk.largeurBrique * 30) / 2);
 				int y1 = 250 - ((brk.longueurBrique * 30) / 2);
 				int x2 = brk.largeurBrique * 30;
@@ -181,6 +214,7 @@ public class VueDesPieces2 extends Canvas implements Observer {
 				}
 			}
 			if (angle == 6) {
+				
 				//face du dessus
 				int x1 = (int) (250 - ((brk.largeurBrique * 30 *Math.sqrt(3)) / 2));
 				int y1 = 250 - ((brk.largeurBrique * 30) / 2)-50;
@@ -238,7 +272,7 @@ public class VueDesPieces2 extends Canvas implements Observer {
 	public void update(Observable o, Object arg0) {
 		try {
 			brk = (Brique) arg0;
-			paint(getGraphics());
+			repaint();
 		} catch (Exception e) {
 			try{
 				angle = (int) arg0;
