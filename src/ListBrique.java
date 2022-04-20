@@ -12,6 +12,7 @@ public class ListBrique extends Panel implements Observer{
 		m.addObserver(this);
 		for (Brique b : m.bibliotheque) {
 			maListe.add(b.nomBrique);
+			
 		}
 		
 		this.add(this.maListe);
