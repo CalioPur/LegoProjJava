@@ -84,6 +84,7 @@ public class Gestionnaire extends Frame implements WindowListener{
 
 	public static void main(String[] args) {
 		new Gestionnaire();
+		
 	}
 
 	@Override
