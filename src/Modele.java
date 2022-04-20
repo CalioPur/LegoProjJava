@@ -51,17 +51,17 @@ public class Modele extends Observable{
 	}
 	
 	public void actuList(String text) {
-		textTyped = text;
+		textTyped = text.toLowerCase();
 		maListAffiche = new ArrayList<Brique>();
 		for(Brique piece : bibliotheque) {
 			if(elmtCompare == "name") {
-				if(piece.nomBrique.contains(text)) {
+				if(piece.nomBrique.contains(textTyped)) {
 					this.maListAffiche.add(piece);
 				}
 			}
 			if(elmtCompare == "id") {
 				String strId = String.valueOf(piece.IdBrique);
-				if(strId.contains(text)) {
+				if(strId.contains(textTyped)) {
 					this.maListAffiche.add(piece);
 					System.out.println(piece.nomBrique);
 				}
@@ -70,7 +70,7 @@ public class Modele extends Observable{
 				String strCol = new String();
 				ColorUtils colScript = new ColorUtils();
 				strCol = colScript.getColorNameFromColor(piece.color).toLowerCase();
-				if(strCol.contains(text)) {
+				if(strCol.contains(textTyped)) {
 					this.maListAffiche.add(piece);
 					System.out.println(piece.nomBrique);
 				}
