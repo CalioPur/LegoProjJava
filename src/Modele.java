@@ -80,4 +80,25 @@ public class Modele extends Observable{
 		this.setChanged();
 		this.notifyObservers(maListAffiche);
 	}
+
+	public void AddAPiece(int mouseX, int mouseY) {
+		int posX=0;
+		int posY=0;
+		if(angleVue<4) {
+			posX = mouseX/30;
+			posY = mouseY/40;
+		}
+		else if(angleVue<6) {
+			posX = mouseX/30;
+			posY = mouseY/30;
+		}
+		
+		System.out.println(posX + " "+ posY);
+		ArrayList pos = new ArrayList<Integer>(); // a changer, utiliser une position (creer la class)
+		pos.add(posX);
+		pos.add(posY);
+		this.setChanged();
+		this.notifyObservers(pos);
+		
+	}
 }
