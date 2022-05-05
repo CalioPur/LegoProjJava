@@ -9,12 +9,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
-public class Controlleur implements ActionListener, MouseListener, ItemListener, KeyListener, DocumentListener {
+public class Controlleur implements ActionListener, MouseListener, ItemListener, KeyListener, DocumentListener, MouseMotionListener {
 
 	Modele modl;
 	
@@ -124,7 +126,6 @@ public class Controlleur implements ActionListener, MouseListener, ItemListener,
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -143,6 +144,27 @@ public class Controlleur implements ActionListener, MouseListener, ItemListener,
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent arg0) {
+		try {
+			Thread.sleep(250);
+			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int mouseX = arg0.getX();
+		int mouseY = arg0.getY();
+		
 		
 	}
 }

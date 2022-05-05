@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+import javax.swing.text.Position;
+
 
 public class Modele extends Observable{
 	String elmtCompare = "name";
@@ -92,7 +94,11 @@ public class Modele extends Observable{
 			posX = mouseX/30;
 			posY = mouseY/30;
 		}
-		Position pos = new Position(posX, posY);
+		else {
+			posX = mouseX/(int)((15 *Math.sqrt(3))*0.65);
+			posY = mouseY/(int)((30)*0.65);
+		}
+		Position1 pos = new Position1(posX, posY);
 		this.setChanged();
 		this.notifyObservers(pos);
 		
