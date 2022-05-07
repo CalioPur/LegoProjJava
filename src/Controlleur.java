@@ -166,7 +166,5 @@ public class Controlleur implements ActionListener, MouseListener, ItemListener,
 		}
 		int mouseX = arg0.getX();
 		int mouseY = arg0.getY();
-		
-		
 	}
 }
