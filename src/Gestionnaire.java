@@ -70,13 +70,16 @@ public class Gestionnaire extends Frame implements WindowListener{
 		btn5.addActionListener(ctrl);
 		Button btn6 = new Button("vue isometrique");
 		btn6.addActionListener(ctrl);
+		Button btn7 = new Button("rotate");
+		btn7.addActionListener(ctrl);
 		containerPanel.add(btn0);
-		containerPanel.add(btn1);
 		containerPanel.add(btn2);
+		containerPanel.add(btn1);
 		containerPanel.add(btn3);
 		containerPanel.add(btn4);
 		containerPanel.add(btn5);
 		containerPanel.add(btn6);
+		containerPanel.add(btn7);
 		this.add(containerPanel, BorderLayout.SOUTH);
 		
 		this.addWindowListener(this);

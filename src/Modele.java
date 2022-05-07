@@ -14,6 +14,7 @@ public class Modele extends Observable{
 	public ArrayList<Brique> maListAffiche;
 	int indexBriqueSelect;
 	int angleVue = 0;
+	double rota=0;
 	
 	public Modele() {
 		this.bibliotheque = new ArrayList<>();
@@ -43,8 +44,10 @@ public class Modele extends Observable{
 
 	public void prochainAngleVue(int ang) {
 		angleVue=ang;
+		rota=ang;
 		this.setChanged();
 		this.notifyObservers(angleVue);
+		this.notifyObservers(rota);
 	}
 	
 	public void chmtTag(String elmt){
@@ -82,7 +85,16 @@ public class Modele extends Observable{
 		this.setChanged();
 		this.notifyObservers(maListAffiche);
 	}
-
+	public void rotation() {
+		if(rota%2==0) {
+			rota++;
+		}
+		else {
+			rota--;
+		}
+		this.setChanged();
+		this.notifyObservers(rota);
+	}
 	public void AddAPiece(int mouseX, int mouseY) {
 		int posX=0;
 		int posY=0;
@@ -90,7 +102,7 @@ public class Modele extends Observable{
 			posX = mouseX/30;
 			posY = mouseY/40;
 		}
-		else if(angleVue<6) {
+		else if(angleVue<8) {
 			posX = mouseX/30;
 			posY = mouseY/30;
 		}

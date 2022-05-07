@@ -45,12 +45,14 @@ public class Controlleur implements ActionListener, MouseListener, ItemListener,
 			this.modl.prochainAngleVue(4);
 		}
 		if(lbl == "vue de dessous") {
-			this.modl.prochainAngleVue(5);
-		}
-		if(lbl == "vue isometrique") {
 			this.modl.prochainAngleVue(6);
 		}
-		
+		if(lbl == "vue isometrique") {
+			this.modl.prochainAngleVue(8);
+		}
+		if(lbl == "rotate") {
+			this.modl.rotation();
+		}
 		
 	}
 

@@ -21,7 +21,8 @@ public class VueDesPieces extends Canvas implements Observer {
 		cnv.setVisible(true);
 		m.addObserver(this);
 	}
-
+	
+	
 	public void paint(Graphics g) {
 		if(etat==0) {		
 			g.setColor(new Color(51,204,255,100));
@@ -148,6 +149,29 @@ public class VueDesPieces extends Canvas implements Observer {
 				}
 			}
 			if (angle == 5) {
+				int x1 = (int)sizeX/2 - ((brk.longueurBrique * 30) / 2);
+				int y1 = (int)sizeY/2 - ((brk.largeurBrique * 30) / 2);
+				int x2 = brk.longueurBrique * 30;
+				int y2 = brk.largeurBrique * 30;
+				if(etat!=0) {
+					x1=sizeX*30+2;
+					y1=sizeY*30+2;
+				}
+				g.setColor(brk.color);
+				g.fillRect(x1, y1, x2, y2);
+				g.setColor(Color.black);
+				g.drawRect(x1, y1, x2, y2);
+				for (int i = 0; i < brk.longueurBrique; i++) {
+					for (int j = 0; j < brk.largeurBrique; j++) {
+						int x3 = x1 + (i * 30) + 5;
+						int y3 = y1 + (j * 30) + 5;
+						g.setColor(Color.black);
+						g.drawArc(x3, y3, 20, 20, 0, 360);
+						
+					}
+				}
+			}
+			if (angle == 6) {
 				int x1 = (int)sizeX/2 - ((brk.largeurBrique * 30) / 2);
 				int y1 = (int)sizeY/2 - ((brk.longueurBrique * 30) / 2);
 				int x2 = brk.largeurBrique * 30;
@@ -172,7 +196,32 @@ public class VueDesPieces extends Canvas implements Observer {
 					}
 				}
 			}
-			if (angle == 6) {
+			if (angle == 7) {
+				int x1 = (int)sizeX/2 - ((brk.longueurBrique * 30) / 2);
+				int y1 = (int)sizeY/2 - ((brk.largeurBrique * 30) / 2);
+				int x2 = brk.longueurBrique * 30;
+				int y2 = brk.largeurBrique * 30;
+				if(etat!=0) {
+					x1=sizeX*30+2;
+					y1=sizeY*30+2;
+				}
+				g.setColor(brk.color);
+				g.fillRect(x1, y1, x2, y2);
+				g.setColor(Color.black);
+				g.drawRect(x1, y1, x2, y2);
+				for (int i = 0; i < brk.longueurBrique; i++) {
+					for (int j = 0; j < brk.largeurBrique; j++) {
+						int x3 = x1 + (i * 30) + 5;
+						int y3 = y1 + (j * 30) + 5;
+						g.setColor(brk.color.darker());
+						g.fillArc(x3, y3, 20, 20, 0, 360);
+						g.setColor(Color.black);
+						g.drawArc(x3, y3, 20, 20, 0, 360);
+						g.drawArc(x3+2, y3+2, 18, 18, 0, 360);
+					}
+				}
+			}
+			if (angle == 8) {
 				//face du dessus
 				int x1 = (int) ((int)sizeX/2 - (((brk.largeurBrique+brk.longueurBrique)/2 * 30 *Math.sqrt(3)) / 2));
 				int y1 = (int)sizeY/2 - ((brk.largeurBrique * 30) / 2)-50;
