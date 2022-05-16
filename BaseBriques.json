@@ -1,8 +1,8 @@
-{
-    "2*1*1":
+[
     {
+        "fullSize":"2*1*1",
         "width":2,
-        "lenght":1,
+        "length":1,
         "height":1,
         "colors":
         {
@@ -10,18 +10,19 @@
             "0102":"blue",
             "0103":"yellow",
             "0104":"green",
-            "0105":"purple",
+            "0105":"cyan",
             "0106":"pink",
             "0107":"black",
             "0108":"red",
-            "0109":"grey",
+            "0109":"gray",
             "0110":"orange"
         }
+
     },
-    "2*2*1":
     {
+        "fullSize":"2*2*1",
         "width":2,
-        "lenght":2,
+        "length":2,
         "height":1,
         "colors":
         {
@@ -29,18 +30,18 @@
             "0202":"blue",
             "0203":"yellow",
             "0204":"green",
-            "0205":"purple",
+            "0205":"cyan",
             "0206":"pink",
             "0207":"black",
             "0208":"red",
-            "0209":"grey",
+            "0209":"gray",
             "0210":"orange"
         }
     },
-    "4*2*1":
     {
+        "fullSize":"4*2*1",
         "width":4,
-        "lenght":2,
+        "length":2,
         "height":1,
         "colors":
         {
@@ -48,18 +49,18 @@
             "0302":"blue",
             "0303":"yellow",
             "0304":"green",
-            "0305":"purple",
+            "0305":"cyan",
             "0306":"pink",
             "0307":"black",
             "0308":"red",
-            "0309":"grey",
+            "0309":"gray",
             "0310":"orange"
-        }
+        }  
     },
-    "1*1*1":
     {
+        "fullSize":"1*1*1",
         "width":1,
-        "lenght":1,
+        "length":1,
         "height":1,
         "colors":
         {
@@ -67,18 +68,18 @@
             "0402":"blue",
             "0403":"yellow",
             "0404":"green",
-            "0405":"purple",
+            "0405":"cyan",
             "0406":"pink",
             "0407":"black",
             "0408":"red",
-            "0409":"grey",
+            "0409":"gray",
             "0410":"orange"
         }
     },
-    "8*2*1":
     {
+        "fullSize":"8*2*1",
         "width":8,
-        "lenght":2,
+        "length":2,
         "height":1,
         "colors":
         {
@@ -86,18 +87,18 @@
             "0502":"blue",
             "0503":"yellow",
             "0504":"green",
-            "0505":"purple",
+            "0505":"cyan",
             "0506":"pink",
             "0507":"black",
             "0508":"red",
-            "0509":"grey",
+            "0509":"gray",
             "0510":"orange"
         }
     },
-    "3*2*1":
     {
+        "fullSize":"3*2*1",
         "width":3,
-        "lenght":2,
+        "length":2,
         "height":1,
         "colors":
         {
@@ -105,18 +106,18 @@
             "0602":"blue",
             "0603":"yellow",
             "0604":"green",
-            "0605":"purple",
+            "0605":"cyan",
             "0606":"pink",
             "0607":"black",
             "0608":"red",
-            "0609":"grey",
+            "0609":"gray",
             "0610":"orange"
         }
     },
-    "8*1*1":
     {
+        "fullSize":"8*1*1",
         "width":8,
-        "lenght":1,
+        "length":1,
         "height":1,
         "colors":
         {
@@ -124,18 +125,18 @@
             "0702":"blue",
             "0703":"yellow",
             "0704":"green",
-            "0705":"purple",
+            "0705":"cyan",
             "0706":"pink",
             "0707":"black",
             "0708":"red",
-            "0709":"grey",
+            "0709":"gray",
             "0710":"orange"
         }
     },
-    "6*1*1":
     {
+        "fullSize":"6*1*1",
         "width":6,
-        "lenght":1,
+        "length":1,
         "height":1,
         "colors":
         {
@@ -143,18 +144,18 @@
             "0802":"blue",
             "0803":"yellow",
             "0804":"green",
-            "0805":"purple",
+            "0805":"cyan",
             "0806":"pink",
             "0807":"black",
             "0808":"red",
-            "0809":"grey",
+            "0809":"gray",
             "0810":"orange"
         }
     },
-    "4*1*1":
     {
+        "fullSize":"4*1*1",
         "width":4,
-        "lenght":1,
+        "length":1,
         "height":1,
         "colors":
         {
@@ -162,18 +163,18 @@
             "0902":"blue",
             "0903":"yellow",
             "0904":"green",
-            "0905":"purple",
+            "0905":"cyan",
             "0906":"pink",
             "0907":"black",
             "0908":"red",
-            "0909":"grey",
+            "0909":"gray",
             "0910":"orange"
         }
     },
-    "2*2*3":
     {
+        "fullSize":"2*2*3",
         "width":2,
-        "lenght":2,
+        "length":2,
         "height":3,
         "colors":
         {
@@ -181,18 +182,18 @@
             "1002":"blue",
             "1003":"yellow",
             "1004":"green",
-            "1005":"purple",
+            "1005":"cyan",
             "1006":"pink",
             "1007":"black",
             "1008":"red",
-            "1009":"grey",
+            "1009":"gray",
             "1010":"orange"
         }
     },
-    "2*1*5":
     {
+        "fullSize":"2*1*5",
         "width":2,
-        "lenght":1,
+        "length":1,
         "height":5,
         "colors":
         {
@@ -200,18 +201,18 @@
             "1102":"blue",
             "1103":"yellow",
             "1104":"green",
-            "1105":"purple",
+            "1105":"cyan",
             "1106":"pink",
             "1107":"black",
             "1108":"red",
-            "1109":"grey",
+            "1109":"gray",
             "1110":"orange"
         }
     },
-    "10*1*1":
     {
+        "fullSize":"10*1*1",
         "width":10,
-        "lenght":1,
+        "length":1,
         "height":1,
         "colors":
         {
@@ -219,18 +220,18 @@
             "1202":"blue",
             "1203":"yellow",
             "1204":"green",
-            "1205":"purple",
+            "1205":"cyan",
             "1206":"pink",
             "1207":"black",
             "1208":"red",
-            "1209":"grey",
+            "1209":"gray",
             "1210":"orange"
         }
     },
-    "12*1*1":
     {
+        "fullSize":"12*1*1",
         "width":12,
-        "lenght":1,
+        "length":1,
         "height":1,
         "colors":
         {
@@ -238,18 +239,18 @@
             "1302":"blue",
             "1303":"yellow",
             "1304":"green",
-            "1305":"purple",
+            "1305":"cyan",
             "1306":"pink",
             "1307":"black",
             "1308":"red",
-            "1309":"grey",
+            "1309":"gray",
             "1310":"orange"
         }
     },
-    "16*1*1":
     {
+        "fullSize":"16*1*1",
         "width":16,
-        "lenght":1,
+        "length":1,
         "height":1,
         "colors":
         {
@@ -257,18 +258,18 @@
             "1402":"blue",
             "1403":"yellow",
             "1404":"green",
-            "1405":"purple",
+            "1405":"cyan",
             "1406":"pink",
             "1407":"black",
             "1408":"red",
-            "1409":"grey",
+            "1409":"gray",
             "1410":"orange"
         }
     },
-    "1*1*5":
     {
+        "fullSize":"1*1*5",
         "width":1,
-        "lenght":1,
+        "length":1,
         "height":5,
         "colors":
         {
@@ -276,18 +277,18 @@
             "1502":"blue",
             "1503":"yellow",
             "1504":"green",
-            "1505":"purple",
+            "1505":"cyan",
             "1506":"pink",
             "1507":"black",
             "1508":"red",
-            "1509":"grey",
+            "1509":"gray",
             "1510":"orange"
         }
     },
-    "3*1*1":
     {
+        "fullSize":"3*1*1",
         "width":3,
-        "lenght":1,
+        "length":1,
         "height":1,
         "colors":
         {
@@ -295,18 +296,18 @@
             "1602":"blue",
             "1603":"yellow",
             "1604":"green",
-            "1605":"purple",
+            "1605":"cyan",
             "1606":"pink",
             "1607":"black",
             "1608":"red",
-            "1609":"grey",
+            "1609":"gray",
             "1610":"orange"
         }
     },
-    "10*2*1":
     {
+        "fullSize":"10*2*1",
         "width":10,
-        "lenght":2,
+        "length":2,
         "height":1,
         "colors":
         {
@@ -314,18 +315,18 @@
             "1702":"blue",
             "1703":"yellow",
             "1704":"green",
-            "1705":"purple",
+            "1705":"cyan",
             "1706":"pink",
             "1707":"black",
             "1708":"red",
-            "1709":"grey",
+            "1709":"gray",
             "1710":"orange"
         }
     },
-    "6*2*1":
     {
+        "fullSize":"6*2*1",
         "width":6,
-        "lenght":2,
+        "length":2,
         "height":1,
         "colors":
         {
@@ -333,18 +334,18 @@
             "1802":"blue",
             "1803":"yellow",
             "1804":"green",
-            "1805":"purple",
+            "1805":"cyan",
             "1806":"pink",
             "1807":"black",
             "1808":"red",
-            "1809":"grey",
+            "1809":"gray",
             "1810":"orange"
         }
     },
-    "8*8*1":
     {
+        "fullSize":"8*8*1",
         "width":8,
-        "lenght":8,
+        "length":8,
         "height":1,
         "colors":
         {
@@ -352,12 +353,12 @@
             "1902":"blue",
             "1903":"yellow",
             "1904":"green",
-            "1905":"purple",
+            "1905":"cyan",
             "1906":"pink",
             "1907":"black",
             "1908":"red",
-            "1909":"grey",
+            "1909":"gray",
             "1910":"orange"
         }
     }
-}
+]

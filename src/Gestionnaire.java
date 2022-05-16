@@ -7,14 +7,17 @@ import java.awt.GridLayout;
 import java.awt.Panel;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 
 import javax.swing.JTextField;
 
 public class Gestionnaire extends Frame implements WindowListener{
 	
-	public Gestionnaire() {
+	Modele modl;
+	
+	public Gestionnaire() throws IOException {
 		
-		Modele modl = new Modele();
+		this.modl = new Modele();
 		
 		Controlleur ctrl = new Controlleur(modl);
 		BorderLayout bl = new BorderLayout();
@@ -88,7 +91,7 @@ public class Gestionnaire extends Frame implements WindowListener{
 		this.setVisible(true);
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		new Gestionnaire();
 		
 	}
