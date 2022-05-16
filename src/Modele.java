@@ -15,6 +15,7 @@ public class Modele extends Observable{
 	int indexBriqueSelect;
 	int angleVue = 0;
 	double rota=0;
+	float suppr=0.f;
 	
 	public Modele() {
 		this.bibliotheque = new ArrayList<>();
@@ -95,6 +96,7 @@ public class Modele extends Observable{
 		this.setChanged();
 		this.notifyObservers(rota);
 	}
+	
 	public void AddAPiece(int mouseX, int mouseY) {
 		int posX=0;
 		int posY=0;

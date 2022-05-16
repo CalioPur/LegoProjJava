@@ -58,7 +58,7 @@ public class construction extends Canvas implements Observer {
 				this.vue.paint(getGraphics());
 				this.face.poll();
 			}
-			this.vue.angle=angle;
+			this.vue.angle=(int)rota;
 			this.vue.sizeX=240;
 			this.vue.sizeY=500;
 			this.vue.brk=brk;
@@ -76,7 +76,7 @@ public class construction extends Canvas implements Observer {
 				this.vue.paint(getGraphics());
 				this.droit.poll();
 			}
-			this.vue.angle=angle;
+			this.vue.angle=(int)rota;
 			this.vue.sizeX=240;
 			this.vue.sizeY=500;
 			this.vue.brk=brk;
@@ -94,7 +94,7 @@ public class construction extends Canvas implements Observer {
 				this.vue.paint(getGraphics());
 				this.derriere.poll();
 			}
-			this.vue.angle=angle;
+			this.vue.angle=(int)rota;
 			this.vue.sizeX=240;
 			this.vue.sizeY=500;
 			this.vue.brk=brk;
@@ -112,7 +112,7 @@ public class construction extends Canvas implements Observer {
 				this.vue.paint(getGraphics());
 				this.gauche.poll();
 			}
-			this.vue.angle=angle;
+			this.vue.angle=(int)rota;
 			this.vue.sizeX=240;
 			this.vue.sizeY=500;
 			this.vue.brk=brk;
@@ -130,7 +130,7 @@ public class construction extends Canvas implements Observer {
 				this.vue.paint(getGraphics());
 				this.dessus.poll();
 			}
-			this.vue.angle=angle;
+			this.vue.angle=(int)rota;
 			this.vue.sizeX=240;
 			this.vue.sizeY=500;
 			this.vue.brk=brk;
@@ -148,7 +148,7 @@ public class construction extends Canvas implements Observer {
 				this.vue.paint(getGraphics());
 				this.dessous.poll();
 			}
-			this.vue.angle=angle;
+			this.vue.angle=(int)rota;
 			this.vue.sizeX=240;
 			this.vue.sizeY=500;
 			this.vue.brk=brk;
@@ -166,7 +166,7 @@ public class construction extends Canvas implements Observer {
 				this.vue.paint(getGraphics());
 				this.iso.poll();
 			}
-			this.vue.angle=angle;
+			this.vue.angle=(int)rota;
 			this.vue.sizeX=240;
 			this.vue.sizeY=500;
 			this.vue.brk=brk;
@@ -190,8 +190,15 @@ public class construction extends Canvas implements Observer {
 			this.gauche.add(new BriqueEtVolume(pos.x,pos.y,0,(int)rota,brk));
 		}
 		if (angle==4) {
-			this.dessus.add(new BriqueEtVolume(pos.x,pos.y,0,(int)rota,brk));
+			if(pasDeBrique()==null) {
+				this.dessus.add(new BriqueEtVolume(pos.x,pos.y,0,(int)rota,brk));
+				this.dessous.add(new BriqueEtVolume(pos.x,pos.y,0,(int)rota+2,brk));
+			}				
+			if(pasDeBrique().z<dimy-1) {
+				this.dessus.add(new BriqueEtVolume(pos.x,pos.y,pasDeBrique().z+1,(int)rota,brk));
+			}
 		}
+		repaint();
 		System.out.println("face"+this.face.peek().brique.nomBrique);
 		System.out.println("droit"+this.droit.peek().brique.nomBrique);
 		System.out.println("derriere"+this.derriere.peek().brique.nomBrique);
@@ -199,34 +206,121 @@ public class construction extends Canvas implements Observer {
 		System.out.println("dessus"+this.dessus.peek().brique.nomBrique);
 	}
 	
-	public boolean pasDeBrique() {
-		boolean peuxplacer=true;
+	public BriqueEtVolume pasDeBrique() {
+		BriqueEtVolume peuxplacer=null;
 		if (angle==0) {
 			for (BriqueEtVolume briqueEtVolume : face) {
-				if(briqueEtVolume.x<=pos.x && briqueEtVolume.y<=pos.y && briqueEtVolume.x+briqueEtVolume.brique.longueurBrique>=pos.x && briqueEtVolume.y+briqueEtVolume.brique.hauteurBrique>=pos.y) {
-					peuxplacer=false;
+				for (int i = 0; i < brk.hauteurBrique; i++) {
+					for (int j = 0; j < brk.longueurBrique; j++) {						
+						if (rota%2==0 && briqueEtVolume.x<=pos.x+j && briqueEtVolume.y<=pos.y+i && briqueEtVolume.x+briqueEtVolume.brique.longueurBrique>pos.x+j && briqueEtVolume.y+briqueEtVolume.brique.hauteurBrique>pos.y+i && briqueEtVolume.o%2==0) {
+							peuxplacer=briqueEtVolume;
+						}
+						if (rota%2==0 && briqueEtVolume.x<=pos.x+j && briqueEtVolume.y<=pos.y+i && briqueEtVolume.x+briqueEtVolume.brique.largeurBrique>pos.x+j && briqueEtVolume.y+briqueEtVolume.brique.hauteurBrique>pos.y+i && briqueEtVolume.o%2==1) {
+							peuxplacer=briqueEtVolume;
+						}
+					}
+					for (int j = 0; j < brk.largeurBrique; j++) {						
+						if (rota%2==1 && briqueEtVolume.x<=pos.x+j && briqueEtVolume.y<=pos.y+i && briqueEtVolume.x+briqueEtVolume.brique.largeurBrique>pos.x+j && briqueEtVolume.y+briqueEtVolume.brique.hauteurBrique>pos.y+i && briqueEtVolume.o%2==1) {
+							peuxplacer=briqueEtVolume;
+						}
+						if (rota%2==1 && briqueEtVolume.x<=pos.x+j && briqueEtVolume.y<=pos.y+i && briqueEtVolume.x+briqueEtVolume.brique.longueurBrique>pos.x+j && briqueEtVolume.y+briqueEtVolume.brique.hauteurBrique>pos.y+i && briqueEtVolume.o%2==0) {
+							peuxplacer=briqueEtVolume;
+						}
+					}
 				}
 			}
 		}
 		if (angle==1) {
 			for (BriqueEtVolume briqueEtVolume : droit) {
-				
+				for (int i = 0; i < brk.hauteurBrique; i++) {
+					for (int j = 0; j < brk.longueurBrique; j++) {						
+						if (rota%2==0 && briqueEtVolume.x<=pos.x+j && briqueEtVolume.y<=pos.y+i && briqueEtVolume.x+briqueEtVolume.brique.longueurBrique>pos.x+j && briqueEtVolume.y+briqueEtVolume.brique.hauteurBrique>pos.y+i && briqueEtVolume.o%2==0) {
+							peuxplacer=briqueEtVolume;
+						}
+						if (rota%2==0 && briqueEtVolume.x<=pos.x+j && briqueEtVolume.y<=pos.y+i && briqueEtVolume.x+briqueEtVolume.brique.largeurBrique>pos.x+j && briqueEtVolume.y+briqueEtVolume.brique.hauteurBrique>pos.y+i && briqueEtVolume.o%2==1) {
+							peuxplacer=briqueEtVolume;
+						}
+					}
+					for (int j = 0; j < brk.largeurBrique; j++) {						
+						if (rota%2==1 && briqueEtVolume.x<=pos.x+j && briqueEtVolume.y<=pos.y+i && briqueEtVolume.x+briqueEtVolume.brique.largeurBrique>pos.x+j && briqueEtVolume.y+briqueEtVolume.brique.hauteurBrique>pos.y+i && briqueEtVolume.o%2==1) {
+							peuxplacer=briqueEtVolume;
+						}
+						if (rota%2==1 && briqueEtVolume.x<=pos.x+j && briqueEtVolume.y<=pos.y+i && briqueEtVolume.x+briqueEtVolume.brique.longueurBrique>pos.x+j && briqueEtVolume.y+briqueEtVolume.brique.hauteurBrique>pos.y+i && briqueEtVolume.o%2==0) {
+							peuxplacer=briqueEtVolume;
+						}
+					}
+				}
 			}
 		}
 		if (angle==2) {
 			for (BriqueEtVolume briqueEtVolume : derriere) {
-				
+				for (int i = 0; i < brk.hauteurBrique; i++) {
+					for (int j = 0; j < brk.longueurBrique; j++) {						
+						if (rota%2==0 && briqueEtVolume.x<=pos.x+j && briqueEtVolume.y<=pos.y+i && briqueEtVolume.x+briqueEtVolume.brique.longueurBrique>pos.x+j && briqueEtVolume.y+briqueEtVolume.brique.hauteurBrique>pos.y+i && briqueEtVolume.o%2==0) {
+							peuxplacer=briqueEtVolume;
+						}
+						if (rota%2==0 && briqueEtVolume.x<=pos.x+j && briqueEtVolume.y<=pos.y+i && briqueEtVolume.x+briqueEtVolume.brique.largeurBrique>pos.x+j && briqueEtVolume.y+briqueEtVolume.brique.hauteurBrique>pos.y+i && briqueEtVolume.o%2==1) {
+							peuxplacer=briqueEtVolume;
+						}
+					}
+					for (int j = 0; j < brk.largeurBrique; j++) {						
+						if (rota%2==1 && briqueEtVolume.x<=pos.x+j && briqueEtVolume.y<=pos.y+i && briqueEtVolume.x+briqueEtVolume.brique.largeurBrique>pos.x+j && briqueEtVolume.y+briqueEtVolume.brique.hauteurBrique>pos.y+i && briqueEtVolume.o%2==1) {
+							peuxplacer=briqueEtVolume;
+						}
+						if (rota%2==1 && briqueEtVolume.x<=pos.x+j && briqueEtVolume.y<=pos.y+i && briqueEtVolume.x+briqueEtVolume.brique.longueurBrique>pos.x+j && briqueEtVolume.y+briqueEtVolume.brique.hauteurBrique>pos.y+i && briqueEtVolume.o%2==0) {
+							peuxplacer=briqueEtVolume;
+						}
+					}
+				}
 			}
 		}
 		if (angle==3) {
 			for (BriqueEtVolume briqueEtVolume : gauche) {
-				
+				for (int i = 0; i < brk.hauteurBrique; i++) {
+					for (int j = 0; j < brk.longueurBrique; j++) {						
+						if (rota%2==0 && briqueEtVolume.x<=pos.x+j && briqueEtVolume.y<=pos.y+i && briqueEtVolume.x+briqueEtVolume.brique.longueurBrique>pos.x+j && briqueEtVolume.y+briqueEtVolume.brique.hauteurBrique>pos.y+i && briqueEtVolume.o%2==0) {
+							peuxplacer=briqueEtVolume;
+						}
+						if (rota%2==0 && briqueEtVolume.x<=pos.x+j && briqueEtVolume.y<=pos.y+i && briqueEtVolume.x+briqueEtVolume.brique.largeurBrique>pos.x+j && briqueEtVolume.y+briqueEtVolume.brique.hauteurBrique>pos.y+i && briqueEtVolume.o%2==1) {
+							peuxplacer=briqueEtVolume;
+						}
+					}
+					for (int j = 0; j < brk.largeurBrique; j++) {						
+						if (rota%2==1 && briqueEtVolume.x<=pos.x+j && briqueEtVolume.y<=pos.y+i && briqueEtVolume.x+briqueEtVolume.brique.largeurBrique>pos.x+j && briqueEtVolume.y+briqueEtVolume.brique.hauteurBrique>pos.y+i && briqueEtVolume.o%2==1) {
+							peuxplacer=briqueEtVolume;
+						}
+						if (rota%2==1 && briqueEtVolume.x<=pos.x+j && briqueEtVolume.y<=pos.y+i && briqueEtVolume.x+briqueEtVolume.brique.longueurBrique>pos.x+j && briqueEtVolume.y+briqueEtVolume.brique.hauteurBrique>pos.y+i && briqueEtVolume.o%2==0) {
+							peuxplacer=briqueEtVolume;
+						}
+					}
+				}
 			}
 		}
 		if (angle==4) {
-			
+			for (BriqueEtVolume briqueEtVolume : dessus) {
+				for (int i = 0; i < brk.largeurBrique; i++) {
+					for (int j = 0; j < brk.longueurBrique; j++) {						
+						if (rota%2==0 && briqueEtVolume.x<=pos.x+i && briqueEtVolume.y<=pos.y+j && briqueEtVolume.x+briqueEtVolume.brique.largeurBrique>pos.x+i && briqueEtVolume.y+briqueEtVolume.brique.longueurBrique>pos.y+j && briqueEtVolume.o%2==0) {
+							peuxplacer=briqueEtVolume;
+						}
+						if (rota%2==0 && briqueEtVolume.x<=pos.x+i && briqueEtVolume.y<=pos.y+j && briqueEtVolume.x+briqueEtVolume.brique.longueurBrique>pos.x+i && briqueEtVolume.y+briqueEtVolume.brique.largeurBrique>pos.y+j && briqueEtVolume.o%2==1) {
+							peuxplacer=briqueEtVolume;
+						}
+					}
+				}
+				for (int i = 0; i < brk.longueurBrique; i++) {
+					for (int j = 0; j < brk.largeurBrique; j++) {						
+						if (rota%2==1 && briqueEtVolume.x<=pos.x+i && briqueEtVolume.y<=pos.y+j && briqueEtVolume.x+briqueEtVolume.brique.largeurBrique>pos.x+i && briqueEtVolume.y+briqueEtVolume.brique.longueurBrique>pos.y+j && briqueEtVolume.o%2==0) {
+							peuxplacer=briqueEtVolume;
+						}
+						if (rota%2==1 && briqueEtVolume.x<=pos.x+i && briqueEtVolume.y<=pos.y+j && briqueEtVolume.x+briqueEtVolume.brique.longueurBrique>pos.x+i && briqueEtVolume.y+briqueEtVolume.brique.largeurBrique>pos.y+j && briqueEtVolume.o%2==1) {
+							peuxplacer=briqueEtVolume;
+						}
+					}
+				}
+			}
 		}
-		System.out.println(peuxplacer);
+		System.out.println(peuxplacer==null);
 		return peuxplacer;
 	}
 	
@@ -310,24 +404,10 @@ public class construction extends Canvas implements Observer {
 					pos = (Position1) arg0;
 					System.out.println(pos);
 					
-					if (pasDeBrique() && angle<4 && pos.y+brk.hauteurBrique<dimy && ((pos.x+brk.largeurBrique<dimx && rota%2==1) || (pos.x+brk.longueurBrique<dimx && rota%2==0))) {
-						this.vue.etat=1;
-						this.vue.sizeX=pos.x;
-						this.vue.sizeY=pos.y;
-						this.vue.paint(getGraphics());
-						this.vue.sizeX=240;
-						this.vue.sizeY=500;
-						this.vue.etat=0;
+					if (pasDeBrique()==null && angle<4 && pos.y+brk.hauteurBrique<dimy && ((pos.x+brk.largeurBrique<dimx && rota%2==1) || (pos.x+brk.longueurBrique<dimx && rota%2==0))) {
 						Sauvegarde();
 					}
-					if (pasDeBrique() && angle>3 && angle<6 && (pos.x+brk.largeurBrique<dimx && pos.y+brk.longueurBrique<dimx && rota%2==0 ||pos.x+brk.longueurBrique<dimx && pos.y+brk.largeurBrique<dimx && rota%2==1 )) {
-						this.vue.etat=1;
-						this.vue.sizeX=pos.x;
-						this.vue.sizeY=pos.y;
-						this.vue.paint(getGraphics());
-						this.vue.sizeX=240;
-						this.vue.sizeY=500;
-						this.vue.etat=0;
+					if (angle>3 && angle<6 && (pos.x+brk.largeurBrique<dimx && pos.y+brk.longueurBrique<dimx && rota%2==0 ||pos.x+brk.longueurBrique<dimx && pos.y+brk.largeurBrique<dimx && rota%2==1 )) {
 						Sauvegarde();
 					}
 					

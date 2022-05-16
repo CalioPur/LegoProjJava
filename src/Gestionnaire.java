@@ -55,7 +55,7 @@ public class Gestionnaire extends Frame implements WindowListener{
 		
 		this.add(listAndSearchBar, BorderLayout.WEST);
 		
-		Panel containerPanel = new Panel(new GridLayout(2, 3));
+		Panel containerPanel = new Panel(new GridLayout(1, 5));
 		Button btn0 = new Button("vue de face");
 		btn0.addActionListener(ctrl);
 		Button btn1 = new Button("vue de derriere");
