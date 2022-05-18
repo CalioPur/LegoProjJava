@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Polygon;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
@@ -27,7 +28,6 @@ public class construction extends Canvas implements Observer {
 	PriorityQueue<BriqueEtVolume> gauche;
 	Queue<BriqueEtVolume> dessus;
 	Queue<BriqueEtVolume> dessous;
-	Queue<BriqueEtVolume> iso;
 	public construction(Modele m,VueDesPieces v) {
 		super();
 		Canvas cnv = new Canvas();
@@ -40,7 +40,6 @@ public class construction extends Canvas implements Observer {
 		this.gauche=new PriorityQueue<BriqueEtVolume>(375);
 		this.dessus=new LinkedList<BriqueEtVolume>();
 		this.dessous=new LinkedList<BriqueEtVolume>();
-		this.iso=new LinkedList<BriqueEtVolume>();
 		this.vue=v;
 		m.addObserver(this);	
 	}
@@ -156,47 +155,232 @@ public class construction extends Canvas implements Observer {
 			this.vue.etat=0;
 		}
 		if (angle==8) {
+			/*for (int z=0;z<dimy;z++) {
+				for (int i=0;i<dimx;i++) {
+					for (int j=0;j<dimx;j++) {			
+						int coordx = (int)(i * 15*Math.sqrt(3)+10*Math.sqrt(3)+j * 15*Math.sqrt(3))-2;
+						int coordy = (j * 30/2) - 10-(i*30/2)+dimx*dimy+z*30;
+						g.fillArc((int)(coordx*0.65),(int)(coordy*0.65),4,4,0,360);
+					}
+			}}**/
+			
+			
 			this.vue.etat=1;
-			Queue<BriqueEtVolume> temp = new LinkedList<BriqueEtVolume>(this.iso);
-			while(!this.iso.isEmpty()) {
-				this.vue.sizeX=this.iso.peek().x;
-				this.vue.sizeY=this.iso.peek().y;
-				this.vue.angle=this.iso.peek().o;
-				this.vue.brk=this.iso.peek().brique;
+			Queue<BriqueEtVolume> temp = new LinkedList<BriqueEtVolume>(this.dessus);
+			PriorityQueue<BriqueEtVolume> b3 = new PriorityQueue<BriqueEtVolume>(10000, new BriqueComparator3());
+			while(!this.dessus.isEmpty()) {
+				b3.add(this.dessus.peek());
+				this.dessus.poll();
+			}
+			this.dessus=temp;
+			
+			PriorityQueue<BriqueEtVolume> temp4 = new PriorityQueue<BriqueEtVolume>(b3);
+			while(!b3.isEmpty()) {
+				if(b3.peek().o%2==0) {
+					this.vue.sizeX=(int)(((10*Math.sqrt(3)+(b3.peek().x+24-b3.peek().brique.longueurBrique-b3.peek().y)*15*Math.sqrt(3))-2)*0.65)+2;
+					this.vue.sizeY=(int)((((b3.peek().x)*30/2)+dimx*dimy-10+((b3.peek().y+4)*30/2)-b3.peek().z*30+(b3.peek().brique.longueurBrique-2)*30/2)*0.65)+2;
+				}
+				else {
+					this.vue.sizeX=(int)(((10*Math.sqrt(3)+(b3.peek().x+24-b3.peek().brique.largeurBrique-b3.peek().y)*15*Math.sqrt(3))-2)*0.65)+2;
+					this.vue.sizeY=(int)((((b3.peek().x)*30/2)+dimx*dimy-10+((b3.peek().y+4)*30/2)-b3.peek().z*30+(b3.peek().brique.largeurBrique-2)*30/2)*0.65)+2;
+				}
+				this.vue.angle=b3.peek().o+4;
+				this.vue.brk=b3.peek().brique;
 				this.vue.paint(getGraphics());
-				this.iso.poll();
+				b3.poll();
 			}
 			this.vue.angle=(int)rota;
 			this.vue.sizeX=240;
 			this.vue.sizeY=500;
 			this.vue.brk=brk;
-			this.iso=temp;
+			b3=temp4;
 			this.vue.etat=0;
+			
+			
+			
+			
 		}
-		
 	}
-	
+	class BriqueComparator3 implements Comparator<BriqueEtVolume>{
+        public int compare(BriqueEtVolume s1, BriqueEtVolume s2) {
+        		if(s1.z-s2.z==0) {
+        			if(s1.y-s2.y==0) {
+        				return s1.x-s2.x;
+        			}
+        			return s1.y-s2.y;
+        		}
+            	return s1.z-s2.z;
+            	
+            }
+    }
 	public void Sauvegarde() {
 		if (angle==0) {
-			this.face.add(new BriqueEtVolume(pos.x,pos.y,0,(int)rota,brk));
+			this.face.add(new BriqueEtVolume(pos.x,pos.y,dimy-pos.y-1,(int)rota,brk));
+			if(pos.x==0 && rota==0) {
+				this.gauche.add(new BriqueEtVolume(dimx-pos.x-brk.largeurBrique-1,pos.y,dimy-pos.y-1,(int)rota+1,brk));
+			}
+			if(pos.x==0 && rota==1) {
+				this.gauche.add(new BriqueEtVolume(dimx-pos.x-brk.longueurBrique-1,pos.y,dimy-pos.y-1,(int)rota-1,brk));
+			}
+			if(pos.x+brk.longueurBrique==dimx-1 && rota==0) {
+				this.droit.add(new BriqueEtVolume(0,pos.y,dimy-pos.y-1,(int)rota+1,brk));
+			}
+			if(pos.x+brk.largeurBrique==dimx-1 && rota==1) {
+				this.droit.add(new BriqueEtVolume(0,pos.y,dimy-pos.y-1,(int)rota-1,brk));
+			}
+			if(pos.y+brk.hauteurBrique==dimy-1) {
+				this.dessous.add(new BriqueEtVolume(pos.x,0,0,7-(int)rota,brk));
+			}	
+			if(rota==0) {
+				this.dessus.add(new BriqueEtVolume(pos.x,dimx-1-brk.largeurBrique,dimy-(pos.y)-1-brk.hauteurBrique,5-(int)rota,brk));				
+			}
+			if(rota==1) {
+				this.dessus.add(new BriqueEtVolume(pos.x,dimx-1-brk.longueurBrique,dimy-(pos.y)-1-brk.hauteurBrique,5-(int)rota,brk));
+			}
 		}
 		if (angle==1) {
-			this.droit.add(new BriqueEtVolume(pos.x,pos.y,0,(int)rota,brk));
+			this.droit.add(new BriqueEtVolume(pos.x,pos.y,dimy-pos.y-1,(int)rota,brk));
+			if(pos.x==0 && rota==0) {
+				this.face.add(new BriqueEtVolume(dimx-pos.x-brk.largeurBrique-1,pos.y,dimy-pos.y-1,(int)rota+1,brk));
+			}
+			if(pos.x==0 && rota==1) {
+				this.face.add(new BriqueEtVolume(dimx-pos.x-brk.longueurBrique-1,pos.y,dimy-pos.y-1,(int)rota-1,brk));
+			}
+			if(pos.x+brk.longueurBrique==dimx-1 && rota==0) {
+				this.derriere.add(new BriqueEtVolume(0,pos.y,0,(int)rota+1,brk));
+			}
+			if(pos.x+brk.largeurBrique==dimx-1 && rota==1) {
+				this.derriere.add(new BriqueEtVolume(0,pos.y,0,(int)rota-1,brk));
+			}
+			if(pos.y+brk.hauteurBrique==dimy-1 && rota==1) {
+				this.dessous.add(new BriqueEtVolume(dimx-1-brk.longueurBrique,pos.x,0,(int)rota+6,brk));
+			}
+			if(pos.y+brk.hauteurBrique==dimy-1 && rota==0) {
+				this.dessous.add(new BriqueEtVolume(dimx-1-brk.largeurBrique,pos.x,0,(int)rota+6,brk));
+			}
+			if(rota==0) {
+				this.dessus.add(new BriqueEtVolume(dimx-1-brk.largeurBrique,dimx-brk.longueurBrique-pos.x-1,dimy-(pos.y)-1-brk.hauteurBrique,(int)rota+4,brk));				
+			}
+			if(rota==1) {
+				this.dessus.add(new BriqueEtVolume(dimx-1-brk.longueurBrique,dimx-brk.largeurBrique-pos.x-1,dimy-(pos.y)-1-brk.hauteurBrique,(int)rota+4,brk));
+			}
 		}
 		if (angle==2) {
-			this.derriere.add(new BriqueEtVolume(pos.x,pos.y,0,(int)rota,brk));
+			this.derriere.add(new BriqueEtVolume(pos.x,pos.y,dimy-pos.y-1,(int)rota,brk));
+			if(pos.x==0 && rota==2) {
+				this.droit.add(new BriqueEtVolume(dimx-pos.x-brk.largeurBrique-1,pos.y,dimy-pos.y-1,(int)rota+1,brk));
+			}
+			if(pos.x==0 && rota==3) {
+				this.droit.add(new BriqueEtVolume(dimx-pos.x-brk.longueurBrique-1,pos.y,dimy-pos.y-1,(int)rota-1,brk));
+			}
+			if(pos.x+brk.longueurBrique==dimx-1 && rota==2) {
+				this.gauche.add(new BriqueEtVolume(0,pos.y,dimy-pos.y-1,(int)rota+1,brk));
+			}
+			if(pos.x+brk.largeurBrique==dimx-1 && rota==3) {
+				this.gauche.add(new BriqueEtVolume(0,pos.y,dimy-pos.y-1,(int)rota-1,brk));
+			}
+			if(pos.y+brk.hauteurBrique==dimy-1 && rota==2) {
+				this.dessous.add(new BriqueEtVolume(dimx-1-pos.x-brk.longueurBrique,dimx-1-brk.largeurBrique,0,9-(int)rota,brk));
+			}
+			if(pos.y+brk.hauteurBrique==dimy-1 && rota==3) {
+				this.dessous.add(new BriqueEtVolume(dimx-1-pos.x-brk.largeurBrique,dimx-1-brk.longueurBrique,0,9-(int)rota,brk));
+			}	
+			if(rota==2) {
+				this.dessus.add(new BriqueEtVolume(dimx-1-pos.x-brk.longueurBrique,0,dimy-(pos.y)-1-brk.hauteurBrique,7-(int)rota,brk));				
+			}
+			if(rota==3) {
+				this.dessus.add(new BriqueEtVolume(dimx-1-pos.x-brk.largeurBrique,0,dimy-(pos.y)-1-brk.hauteurBrique,7-(int)rota,brk));
+			}
 		}
 		if (angle==3) {
-			this.gauche.add(new BriqueEtVolume(pos.x,pos.y,0,(int)rota,brk));
+			this.gauche.add(new BriqueEtVolume(pos.x,pos.y,dimy-pos.y-1,(int)rota,brk));
+			if(pos.x==0 && rota==2) {
+				this.derriere.add(new BriqueEtVolume(dimx-pos.x-brk.largeurBrique-1,pos.y,dimy-pos.y-1,(int)rota+1,brk));
+			}
+			if(pos.x==0 && rota==3) {
+				this.derriere.add(new BriqueEtVolume(dimx-pos.x-brk.longueurBrique-1,pos.y,dimy-pos.y-1,(int)rota-1,brk));
+			}
+			if(pos.x+brk.longueurBrique==dimx-1 && rota==2) {
+				this.face.add(new BriqueEtVolume(0,pos.y,dimy-pos.y-1,(int)rota+1,brk));
+			}
+			if(pos.x+brk.largeurBrique==dimx-1 && rota==3) {
+				this.face.add(new BriqueEtVolume(0,pos.y,dimy-pos.y-1,(int)rota-1,brk));
+			}
+			if(pos.y+brk.hauteurBrique==dimy-1 && rota==3) {
+				this.dessous.add(new BriqueEtVolume(0,dimx-brk.largeurBrique-pos.x-1,0,(int)rota+4,brk));
+			}
+			if(pos.y+brk.hauteurBrique==dimy-1 && rota==2) {
+				this.dessous.add(new BriqueEtVolume(0,dimx-brk.longueurBrique-pos.x-1,0,(int)rota+4,brk));
+			}
+			if(rota==2) {
+				this.dessus.add(new BriqueEtVolume(0,pos.x,dimy-(pos.y)-1-brk.hauteurBrique,(int)rota+2,brk));				
+			}
+			if(rota==3) {
+				this.dessus.add(new BriqueEtVolume(0,pos.x,dimy-(pos.y)-1-brk.hauteurBrique,(int)rota+2,brk));
+			}
 		}
 		if (angle==4) {
 			if(pasDeBrique()==null) {
 				this.dessus.add(new BriqueEtVolume(pos.x,pos.y,0,(int)rota,brk));
-				this.dessous.add(new BriqueEtVolume(pos.x,pos.y,0,(int)rota+2,brk));
+				if(rota==4) {
+					this.dessous.add(new BriqueEtVolume(pos.x,dimx-pos.y-1-brk.longueurBrique,0,(int)rota+2,brk));
+					if(pos.y==0) {
+						this.derriere.add(new BriqueEtVolume(dimx-pos.x-brk.largeurBrique-1,dimy-1-brk.hauteurBrique,0,7-(int)rota,brk));
+					}
+					if(pos.y+brk.longueurBrique==dimx-1) {
+						this.face.add(new BriqueEtVolume(pos.x,dimy-1-brk.hauteurBrique,0,5-(int)rota,brk));
+					}
+					if(pos.x+brk.largeurBrique==dimx-1) {
+						this.droit.add(new BriqueEtVolume(dimx-pos.y-brk.longueurBrique-1,dimy-1-brk.hauteurBrique,0,(int)rota-4,brk));
+					}
+					
+				}
+				if(rota==5) {
+					this.dessous.add(new BriqueEtVolume(pos.x,dimx-pos.y-1-brk.largeurBrique,0,(int)rota+2,brk));
+					if(pos.y==0) {
+						this.derriere.add(new BriqueEtVolume(dimx-pos.x-brk.longueurBrique-1,dimy-1-brk.hauteurBrique,0,7-(int)rota-2,brk));
+					}
+					if(pos.y+brk.largeurBrique==dimx-1) {
+						this.face.add(new BriqueEtVolume(pos.x,dimy-1-brk.hauteurBrique,0,5-(int)rota,brk));
+					}
+					if(pos.x+brk.longueurBrique==dimx-1) {
+						this.droit.add(new BriqueEtVolume(dimx-pos.y-brk.largeurBrique-1,dimy-1-brk.hauteurBrique,0,(int)rota-4,brk));
+					}
+				}
+				if(pos.x==0) {
+					this.gauche.add(new BriqueEtVolume(pos.y,dimy-1-brk.hauteurBrique,0,(int)rota-2,brk));
+				}
+				
 			}				
-			if(pasDeBrique().z<dimy-1) {
-				this.dessus.add(new BriqueEtVolume(pos.x,pos.y,pasDeBrique().z+1,(int)rota,brk));
-			}
+			else if(pasDeBrique().z+pasDeBrique().brique.hauteurBrique+brk.hauteurBrique<dimy) {
+				this.dessus.add(new BriqueEtVolume(pos.x,pos.y,pasDeBrique().z+pasDeBrique().brique.hauteurBrique,(int)rota,brk));
+				if(pos.y==0 && rota==4) {
+					this.derriere.add(new BriqueEtVolume(dimx-pos.x-brk.largeurBrique-1,dimy-1-brk.hauteurBrique-pasDeBrique().z,0,7-(int)rota,brk));
+				}
+				if(pos.y==0 && rota==5) {
+					this.derriere.add(new BriqueEtVolume(dimx-pos.x-brk.longueurBrique-1,dimy-1-brk.hauteurBrique-pasDeBrique().z,0,7-(int)rota,brk));
+				}
+				if(pos.y+brk.longueurBrique==dimx-1 && rota==4) {
+					this.face.add(new BriqueEtVolume(pos.x,dimy-1-brk.hauteurBrique-pasDeBrique().z,0,5-(int)rota,brk));
+				}
+				if(pos.y+brk.largeurBrique==dimx-1 && rota==5) {
+					this.face.add(new BriqueEtVolume(pos.x,dimy-1-brk.hauteurBrique-pasDeBrique().z,0,5-(int)rota,brk));
+				}
+				if(pos.x==0) {
+					this.gauche.add(new BriqueEtVolume(pos.y,dimy-1-brk.hauteurBrique-pasDeBrique().z,0,(int)rota-2,brk));
+				}
+				if(pos.x+brk.largeurBrique==dimx-1 && rota==4) {
+					this.droit.add(new BriqueEtVolume(dimx-pos.y-brk.longueurBrique-1,dimy-1-brk.hauteurBrique-pasDeBrique().z,0,(int)rota-4,brk));
+				}
+				if(pos.x+brk.longueurBrique==dimx-1 && rota==5) {
+					this.droit.add(new BriqueEtVolume(dimx-pos.y-brk.largeurBrique-1,dimy-1-brk.hauteurBrique-pasDeBrique().z,0,(int)rota-4,brk));
+				}
+			}	
+			
+			
+			
+			
+			
 		}
 		repaint();
 		System.out.println("face"+this.face.peek().brique.nomBrique);

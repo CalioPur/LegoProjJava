@@ -1,8 +1,8 @@
 [
     {
         "fullSize":"2*1*1",
-        "width":2,
-        "length":1,
+        "length":2,
+        "width":1,
         "height":1,
         "colors":
         {
@@ -21,8 +21,8 @@
     },
     {
         "fullSize":"2*2*1",
-        "width":2,
         "length":2,
+        "width":2,
         "height":1,
         "colors":
         {
@@ -40,8 +40,8 @@
     },
     {
         "fullSize":"4*2*1",
-        "width":4,
-        "length":2,
+        "length":4,
+        "width":2,
         "height":1,
         "colors":
         {
@@ -59,8 +59,8 @@
     },
     {
         "fullSize":"1*1*1",
-        "width":1,
         "length":1,
+        "width":1,
         "height":1,
         "colors":
         {
@@ -78,8 +78,8 @@
     },
     {
         "fullSize":"8*2*1",
-        "width":8,
-        "length":2,
+        "length":8,
+        "width":2,
         "height":1,
         "colors":
         {
@@ -97,8 +97,8 @@
     },
     {
         "fullSize":"3*2*1",
-        "width":3,
-        "length":2,
+        "length":3,
+        "width":2,
         "height":1,
         "colors":
         {
@@ -116,8 +116,8 @@
     },
     {
         "fullSize":"8*1*1",
-        "width":8,
-        "length":1,
+        "length":8,
+        "width":1,
         "height":1,
         "colors":
         {
@@ -135,8 +135,8 @@
     },
     {
         "fullSize":"6*1*1",
-        "width":6,
-        "length":1,
+        "length":6,
+        "width":1,
         "height":1,
         "colors":
         {
@@ -154,8 +154,8 @@
     },
     {
         "fullSize":"4*1*1",
-        "width":4,
-        "length":1,
+        "length":4,
+        "width":1,
         "height":1,
         "colors":
         {
@@ -173,8 +173,8 @@
     },
     {
         "fullSize":"2*2*3",
-        "width":2,
         "length":2,
+        "width":2,
         "height":3,
         "colors":
         {
@@ -192,8 +192,8 @@
     },
     {
         "fullSize":"2*1*5",
-        "width":2,
-        "length":1,
+        "length":2,
+        "width":1,
         "height":5,
         "colors":
         {
@@ -211,8 +211,8 @@
     },
     {
         "fullSize":"10*1*1",
-        "width":10,
-        "length":1,
+        "length":10,
+        "width":1,
         "height":1,
         "colors":
         {
@@ -230,8 +230,8 @@
     },
     {
         "fullSize":"12*1*1",
-        "width":12,
-        "length":1,
+        "length":12,
+        "width":1,
         "height":1,
         "colors":
         {
@@ -249,8 +249,8 @@
     },
     {
         "fullSize":"16*1*1",
-        "width":16,
-        "length":1,
+        "length":16,
+        "width":1,
         "height":1,
         "colors":
         {
@@ -268,8 +268,8 @@
     },
     {
         "fullSize":"1*1*5",
-        "width":1,
         "length":1,
+        "width":1,
         "height":5,
         "colors":
         {
@@ -287,8 +287,8 @@
     },
     {
         "fullSize":"3*1*1",
-        "width":3,
-        "length":1,
+        "length":3,
+        "width":1,
         "height":1,
         "colors":
         {
@@ -306,8 +306,8 @@
     },
     {
         "fullSize":"10*2*1",
-        "width":10,
-        "length":2,
+        "length":10,
+        "width":2,
         "height":1,
         "colors":
         {
@@ -325,8 +325,8 @@
     },
     {
         "fullSize":"6*2*1",
-        "width":6,
-        "length":2,
+        "length":6,
+        "width":2,
         "height":1,
         "colors":
         {
@@ -344,8 +344,8 @@
     },
     {
         "fullSize":"8*8*1",
-        "width":8,
         "length":8,
+        "width":8,
         "height":1,
         "colors":
         {
